@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package Lucius Middleton
+
+service Raya Sweeney {
+    rpc Hedy Reeves (integer) returns (boolean);
+}
+
+message Nihil doloribus quos {
+    string Iola Henson = 1;
+}
+
+message Quae nesciunt eveni {
+    integer Paki Rosa = 1;
+}
+
+message Vitae et sed delectu {
+    integer Cora Shaw = 1;
+}
+

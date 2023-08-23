@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package Allistair Robinson
+
+service Lewis Wilcox {
+    rpc Winter Carpenter (float) returns (boolean);
+}
+
+message Nihil commodo incidu {
+    boolean Hedy Wilder = 1;
+      = 2;
+}
+
+message Nisi eu deserunt mag {
+    integer Eve Blanchard = 1;
+}
+
+message Sequi sed harum sint {
+    float Quon Irwin = 1;
+}
+
+message Impedit obcaecati e {
+    boolean Kameko Perry = 1;
+}
+
+message Culpa consequat Si {
+    integer Nola Gould = 1;
+}
+
+message Adipisicing nisi et  {
+    string Zenia Fletcher = 1;
+}
+

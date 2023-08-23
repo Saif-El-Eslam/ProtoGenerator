@@ -1,6 +1,6 @@
-import { Box, FormControl, Input, Text, Flex } from "@chakra-ui/react";
+import { Box, FormControl, Input, Text, Flex, Select } from "@chakra-ui/react";
 
-function ProtoServiceForm({ service, setService }) {
+function ProtoServiceForm({ service, setService, messageParamsTypes }) {
   const handleChange = (e) => {
     setService({
       ...service,
@@ -38,25 +38,53 @@ function ProtoServiceForm({ service, setService }) {
         </FormControl>
 
         <FormControl mb={5} w={{ base: "100%", sm: "48%" }}>
-          <Input
+          {/* <Input
             placeholder="Request Type"
             label="Request Type"
             id="requestType"
             type="text"
             value={service.requestType}
             onChange={handleChange}
-          />
+          /> */}
+          <Select
+            placeholder="Request Type"
+            label="Request Type"
+            id="requestType"
+            value={service.requestType}
+            onChange={handleChange}
+            // color={"gray.500"}
+          >
+            {messageParamsTypes.map((dataType) => (
+              <option key={dataType} value={dataType}>
+                {dataType}
+              </option>
+            ))}
+          </Select>
         </FormControl>
 
         <FormControl mb={5} w={{ base: "100%", sm: "48%" }}>
-          <Input
+          {/* <Input
             placeholder="Response Type"
             label="Response Type"
             id="responseType"
             type="text"
             value={service.responseType}
             onChange={handleChange}
-          />
+          /> */}
+          <Select
+            placeholder="Response Type"
+            label="Response Type"
+            id="responseType"
+            value={service.responseType}
+            onChange={handleChange}
+            // color={"gray.500"}
+          >
+            {messageParamsTypes.map((dataType) => (
+              <option key={dataType} value={dataType}>
+                {dataType}
+              </option>
+            ))}
+          </Select>
         </FormControl>
       </Flex>
     </Box>

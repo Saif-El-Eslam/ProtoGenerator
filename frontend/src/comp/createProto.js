@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import ProtoServiceForm from "./protoServiceForm";
 import ProtoMessagesForm from "./protoMessagesForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function CreateProto() {
@@ -27,7 +27,20 @@ function CreateProto() {
   const [created, setCreated] = useState(false);
   const [fileContent, setFileContent] = useState(null);
 
-  const saveProto = () => {
+  const dataTypes = ["string", "integer", "float", "boolean"];
+  const [messageParamsTypes, setMessageParamsTypes] = useState(dataTypes);
+
+  // for any change in the messages array, add the params types to the messageParamsTypes array
+  useEffect(() => {
+    let newMessageParamsTypes = [...dataTypes];
+    messages.forEach((message) => {
+      if (!newMessageParamsTypes.includes(message.name) && message.name !== "")
+        newMessageParamsTypes.push(message.name);
+    });
+    setMessageParamsTypes(newMessageParamsTypes);
+  }, [messages]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function saveProto() {
     const protoFile = {
       fileName: fileName,
       packageName: packageName,
@@ -44,13 +57,13 @@ function CreateProto() {
           .get(`http://localhost:3005/uploads/${fileName}.proto`)
           .then((res) => {
             setFileContent(res.data);
-            console.log(fileContent);
+            // console.log(fileContent);
           });
 
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => console.log(err));
-  };
+  }
 
   const DownloadFile = () => {
     const bolb = new Blob([fileContent], { type: "text/plain" });
@@ -90,7 +103,7 @@ function CreateProto() {
         >
           <Box fontSize={"2rem"} fontWeight={"bold"} color={"#333"} p={"2rem"}>
             Create Proto File
-          </Box> 
+          </Box>
           <Box
             w={"60%"}
             border={"1px"}
@@ -128,7 +141,11 @@ function CreateProto() {
             </FormControl>
 
             <Divider bgColor="brand.primary.200" mb={5} mt={5} />
-            <ProtoServiceForm service={service} setService={setService} />
+            <ProtoServiceForm
+              service={service}
+              setService={setService}
+              messageParamsTypes={messageParamsTypes}
+            />
 
             <Divider bgColor="brand.primary.200" mb={5} mt={5} />
             {messages.map((message, index) => (
@@ -137,6 +154,7 @@ function CreateProto() {
                 index={index}
                 setMessages={setMessages}
                 messages={messages}
+                messageParamsTypes={messageParamsTypes}
               />
             ))}
 
@@ -216,7 +234,7 @@ function CreateProto() {
             p={"2rem"}
             backgroundColor={"#333"}
             color={"#E0E0E0"}
-            overflowY={"scroll"}
+            overflow={"scroll"}
             scroll={"smooth"}
             // styling the scroll bar
             css={{

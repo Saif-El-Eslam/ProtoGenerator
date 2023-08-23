@@ -7,10 +7,16 @@ import {
   Button,
   Center,
   Divider,
+  Select,
 } from "@chakra-ui/react";
 // import { useState } from "react";
 
-function ProtoMessagesForm({ setMessages, messages, index }) {
+function ProtoMessagesForm({
+  setMessages,
+  messages,
+  index,
+  messageParamsTypes,
+}) {
   const addMessage = () => {
     setMessages([
       ...messages,
@@ -135,14 +141,33 @@ function ProtoMessagesForm({ setMessages, messages, index }) {
           </FormControl>
 
           <FormControl mb={5} w={{ base: "100%", sm: "48%" }}>
-            <Input
+            {/* <Input
               placeholder="Parameter Type"
               label="Parameter Type"
               id="parameterType"
               type="text"
               value={param.paramType}
               onChange={(e) => handleParamTypeChange(e, paramIndex)}
-            />
+            /> */}
+            <Select
+              placeholder="Parameter Type"
+              label="Parameter Type"
+              id="parameterType"
+              value={param.paramType}
+              onChange={(e) => handleParamTypeChange(e, paramIndex)}
+              // color={"gray.500"}
+            >
+              {messageParamsTypes.map((dataType) => {
+                if (messages[index].name !== dataType) {
+                  return (
+                    <option key={dataType} value={dataType}>
+                      {dataType}
+                    </option>
+                  );
+                }
+                return null;
+              })}
+            </Select>
           </FormControl>
         </Flex>
       ))}
