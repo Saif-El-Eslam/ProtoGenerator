@@ -9,9 +9,12 @@ import {
 import ProtoServiceForm from "./protoServiceForm";
 import ProtoMessagesForm from "./protoMessagesForm";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 function CreateProto() {
+  const navigate = useNavigate();
   const [fileName, setFileName] = useState("");
   const [packageName, setPackageName] = useState("");
   const [service, setService] = useState({
@@ -27,7 +30,7 @@ function CreateProto() {
   const [created, setCreated] = useState(false);
   const [fileContent, setFileContent] = useState(null);
 
-  const dataTypes = ["string", "integer", "float", "boolean"];
+  const dataTypes = ["string", "int32", "int64", "float", "boolean"];
   const [messageParamsTypes, setMessageParamsTypes] = useState(dataTypes);
 
   // for any change in the messages array, add the params types to the messageParamsTypes array
@@ -101,7 +104,22 @@ function CreateProto() {
           alignItems={"center"}
           pb={5}
         >
-          <Box fontSize={"2rem"} fontWeight={"bold"} color={"#333"} p={"2rem"}>
+          <Box
+            fontSize={"2rem"}
+            fontWeight={"bold"}
+            color={"#333"}
+            p={"2rem"}
+            display={"flex"}
+            gap={5}
+          >
+            <Box
+              onClick={() => navigate("/")}
+              cursor={"pointer"}
+              _hover={{ color: "brand.primary.200" }}
+              _active={{ transform: "scale(0.9)" }}
+            >
+              <ArrowBackIcon />
+            </Box>
             Create Proto File
           </Box>
           <Box
@@ -202,7 +220,32 @@ function CreateProto() {
               _active={{
                 transform: "scale(0.98)",
               }}
-              onClick={handleCreateNewFile}
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Main Menu
+            </Button>
+
+            <Button
+              alignSelf={"center"}
+              colorScheme="brand.primary"
+              variant="outline"
+              size="md"
+              w={"200px"}
+              mb={5}
+              mr={5}
+              _hover={{
+                backgroundColor: "#333",
+                color: "#E0E0E0",
+              }}
+              _active={{
+                transform: "scale(0.98)",
+              }}
+              onClick={() => {
+                handleCreateNewFile();
+                navigate("/");
+              }}
             >
               Create New File
             </Button>

@@ -1,15 +1,18 @@
 import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CreateProto from "./comp/createProto";
+import CreateProto from "./protoGenerator/createProto";
+import ParseProto from "./protoParser/parseProto";
+import Home from "./home";
 
 function App() {
   return (
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<CreateProto />} />
-          <Route path="/proto-file" element={<h1>About</h1>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/create-proto" element={<CreateProto />} />
+          <Route path="/parse-proto" element={<ParseProto />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>

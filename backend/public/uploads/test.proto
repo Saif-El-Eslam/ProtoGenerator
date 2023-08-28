@@ -1,20 +1,12 @@
 syntax = "proto3";
 
-package test;
+package 
 
-service TestService {
-    rpc TestMethod (TestMessage) returns (TestMessage2);
+service  {
+    rpc  () returns ();
 }
 
-message TestMessage {
-    int32 id = 1;
-    string name = 2;
-    string email = 3;
-}
-
-message TestMessage2 {
-    int32 id = 1;
-    string name = 2;
-    string email = 3;
+message  {
+      = 1;
 }
 
